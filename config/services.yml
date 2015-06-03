@@ -1,0 +1,17 @@
+imports:
+    - { resource: tables.yml }
+services:
+    dmzx.counter.acplistener:
+        class: dmzx\counter\event\acp_listener
+        tags:
+            - { name: event.listener }
+    dmzx.counter.listener:
+        class: dmzx\counter\event\listener
+        arguments:
+            - @config
+            - @template
+            - @user
+            - @dbal.conn
+            - %dmzx.counter.table.counter%
+        tags:
+            - { name: event.listener }

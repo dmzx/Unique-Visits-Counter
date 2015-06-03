@@ -1,0 +1,2 @@
+parameters:
+    dmzx.counter.table.counter: %core.table_prefix%visits_counter
