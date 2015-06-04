@@ -44,8 +44,6 @@ class listener implements EventSubscriberInterface
 		return array(
 			'core.index_modify_page_title'	=> 'index_modify_page_title',
 			'core.page_header'	=> 'add_page_header_links',
-			'core.user_setup'	=> 'load_language_on_setup',
-
 		);
 	}
 
@@ -64,6 +62,8 @@ class listener implements EventSubscriberInterface
 
 	 if (!empty($this->config['allow_visits_counter']))
 	 {
+		$this->user->add_lang_ext('dmzx/counter', 'common');
+
 		$sql = 'SELECT COUNT(*) AS visits_counter
 			FROM ' . $this->visits_counter_table . '
 			WHERE ' . $this->db->sql_in_set('uvc_ip', $this->user->ip);
@@ -108,10 +108,4 @@ class listener implements EventSubscriberInterface
 	 }
 
 	}
-
-	public function load_language_on_setup($event)
-	{
-		$this->user->add_lang_ext('dmzx/counter', 'common');
-	}
-
 }
