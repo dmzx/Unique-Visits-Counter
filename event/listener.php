@@ -82,7 +82,7 @@ class listener implements EventSubscriberInterface
 			$sql = 'INSERT INTO ' . $this->visits_counter_table . ' ' . $this->db->sql_build_array('INSERT', $sql_ary);
 			$this->db->sql_query($sql);
 
-			set_config_count('visits_counter', 1, true);
+			$this->config->increment('visits_counter', 1, true);
 		}
 		else
 		{
