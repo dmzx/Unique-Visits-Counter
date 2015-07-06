@@ -21,7 +21,7 @@ class counter_schema extends \phpbb\db\migration\migration
 		);
 	}
 
-		public function update_schema()
+	public function update_schema()
 	{
 		return array(
 			'add_tables'	=> array(
@@ -37,7 +37,7 @@ class counter_schema extends \phpbb\db\migration\migration
 		));
 	}
 
-		public function revert_schema()
+	public function revert_schema()
 	{
 		return array(
 			'drop_tables'	=> array(

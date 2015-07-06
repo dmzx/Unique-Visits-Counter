@@ -52,60 +52,63 @@ class listener implements EventSubscriberInterface
 		if (!empty($this->config['allow_visits_counter']))
 		{
 			$this->template->assign_vars(array(
-			'S_VISITS_COUNTER'			=> true,
-		));
+				'S_VISITS_COUNTER'			=> true,
+			));
 		}
 	}
 
 	public function add_page_header_links($event)
 	{
 
-	 if (!empty($this->config['allow_visits_counter']))
-	 {
-		$this->user->add_lang_ext('dmzx/counter', 'common');
-
-		$sql = 'SELECT COUNT(*) AS visits_counter
-			FROM ' . $this->visits_counter_table . '
-			WHERE ' . $this->db->sql_in_set('uvc_ip', $this->user->ip);
-		$result = $this->db->sql_query($sql);
-		$visits_counter = (int) $this->db->sql_fetchfield('visits_counter');
-		$this->db->sql_freeresult($result);
-
-		$visits = $this->config['visits_counter'];
-
-		if($visits_counter == 0)
+		if (!empty($this->config['allow_visits_counter']))
 		{
-			$sql_ary = array(
-				'uvc_ip'		=> $this->user->ip,
-				'uvc_timestamp'	=> time()
-			);
-			$sql = 'INSERT INTO ' . $this->visits_counter_table . ' ' . $this->db->sql_build_array('INSERT', $sql_ary);
+			$this->user->add_lang_ext('dmzx/counter', 'common');
+
+			$sql = 'SELECT COUNT(*) AS visits_counter
+				FROM ' . $this->visits_counter_table . '
+				WHERE ' . $this->db->sql_in_set('uvc_ip', $this->user->ip);
+			$result = $this->db->sql_query($sql);
+			$visits_counter = (int) $this->db->sql_fetchfield('visits_counter');
+			$this->db->sql_freeresult($result);
+
+			$visits = $this->config['visits_counter'];
+
+			if($visits_counter == 0)
+			{
+				$sql_ary = array(
+					'uvc_ip'		=> $this->user->ip,
+					'uvc_timestamp'	=> time()
+				);
+				$sql = 'INSERT INTO ' . $this->visits_counter_table . ' ' . $this->db->sql_build_array('INSERT', $sql_ary);
+				$this->db->sql_query($sql);
+
+				$this->config->increment('visits_counter', 1, true);
+			}
+			else
+			{
+				$sql_ary = array(
+					'uvc_timestamp'	=> time()
+				);
+				$sql = 'UPDATE ' . $this->visits_counter_table . ' SET ' . $this->db->sql_build_array('UPDATE', $sql_ary) . ' 
+					WHERE ' . $this->db->sql_in_set('uvc_ip', $this->user->ip);
+				$this->db->sql_query($sql);
+			}
+
+			$timestamp = time() - (3600 * 24);
+			$sql_ary = array($timestamp);
+			$sql = 'DELETE FROM ' . $this->visits_counter_table . ' 
+				WHERE uvc_timestamp < ' . $timestamp;
 			$this->db->sql_query($sql);
 
-			$this->config->increment('visits_counter', 1, true);
+			$sql =	'SELECT COUNT(*) AS num_del 
+				FROM ' . $this->visits_counter_table . ' ' ;
+			$result = $this->db->sql_query($sql);
+			$visitsok = (int) $this->db->sql_fetchfield('num_del');
+
+			$this->template->assign_vars(array(
+				'UNIQUE_VISITS_COUNTER'			=> sprintf($this->user->lang['UNIQUE_VISITS_COUNTER'], $visitsok),
+			));
 		}
-		else
-		{
-			$sql_ary = array(
-				'uvc_timestamp'	=> time()
-			);
-			$sql = 'UPDATE ' . $this->visits_counter_table . ' SET ' . $this->db->sql_build_array('UPDATE', $sql_ary) . ' WHERE ' . $this->db->sql_in_set('uvc_ip', $this->user->ip);
-			$this->db->sql_query($sql);
-		}
-
-		$timestamp = time() - (3600 * 24);
-		$sql_ary = array($timestamp);
-		$sql = 'DELETE FROM ' . $this->visits_counter_table . ' WHERE uvc_timestamp < ' . $timestamp;
-		$this->db->sql_query($sql);
-
-		$sql =	'SELECT COUNT(*) AS num_del FROM ' . $this->visits_counter_table . ' ' ;
-		$result = $this->db->sql_query($sql);
-		$visitsok = (int) $this->db->sql_fetchfield('num_del');
-
-		$this->template->assign_vars(array(
-			'UNIQUE_VISITS_COUNTER'			=> sprintf($this->user->lang['UNIQUE_VISITS_COUNTER'], $visitsok),
-		));
-	 }
 
 	}
 }
