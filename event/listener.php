@@ -89,18 +89,18 @@ class listener implements EventSubscriberInterface
 				$sql_ary = array(
 					'uvc_timestamp'	=> time()
 				);
-				$sql = 'UPDATE ' . $this->visits_counter_table . ' SET ' . $this->db->sql_build_array('UPDATE', $sql_ary) . ' 
+				$sql = 'UPDATE ' . $this->visits_counter_table . ' SET ' . $this->db->sql_build_array('UPDATE', $sql_ary) . '
 					WHERE ' . $this->db->sql_in_set('uvc_ip', $this->user->ip);
 				$this->db->sql_query($sql);
 			}
 
 			$timestamp = time() - (3600 * 24);
 			$sql_ary = array($timestamp);
-			$sql = 'DELETE FROM ' . $this->visits_counter_table . ' 
+			$sql = 'DELETE FROM ' . $this->visits_counter_table . '
 				WHERE uvc_timestamp < ' . $timestamp;
 			$this->db->sql_query($sql);
 
-			$sql =	'SELECT COUNT(*) AS num_del 
+			$sql =	'SELECT COUNT(*) AS num_del
 				FROM ' . $this->visits_counter_table . ' ' ;
 			$result = $this->db->sql_query($sql);
 			$visitsok = (int) $this->db->sql_fetchfield('num_del');
