@@ -11,7 +11,6 @@ namespace dmzx\counter\migrations;
 
 class counter_schema extends \phpbb\db\migration\migration
 {
-
 	public function update_data()
 	{
 		return array(
@@ -45,5 +44,4 @@ class counter_schema extends \phpbb\db\migration\migration
 			),
 		);
 	}
-
 }

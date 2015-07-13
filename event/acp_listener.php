@@ -19,7 +19,7 @@ class acp_listener implements EventSubscriberInterface
 	static public function getSubscribedEvents()
 	{
 		return array(
-			'core.acp_board_config_edit_add'	=>	'add_options',
+			'core.acp_board_config_edit_add'	=> 'add_options',
 		);
 	}
 

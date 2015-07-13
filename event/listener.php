@@ -19,18 +19,26 @@ use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 */
 class listener implements EventSubscriberInterface
 {
-
+	/** @var \phpbb\config\config */
 	protected $config;
-
+	
+	/** @var \phpbb\template\template */
 	protected $template;
-
+	
+	/** @var \phpbb\user */
 	protected $user;
-
+	
+	/** @var \phpbb\db\driver\driver_interface */
 	protected $db;
-
+	
+	/**
+	* The database tables
+	*
+	* @var string
+	*/
 	protected $visits_counter_table;
 
-	public function __construct( \phpbb\config\config $config,	\phpbb\template\template $template, \phpbb\user $user, \phpbb\db\driver\driver_interface $db, $visits_counter_table)
+	public function __construct(\phpbb\config\config $config, \phpbb\template\template $template, \phpbb\user $user, \phpbb\db\driver\driver_interface $db, $visits_counter_table)
 	{
 		$this->config = $config;
 		$this->template = $template;
@@ -52,14 +60,13 @@ class listener implements EventSubscriberInterface
 		if (!empty($this->config['allow_visits_counter']))
 		{
 			$this->template->assign_vars(array(
-				'S_VISITS_COUNTER'			=> true,
+				'S_VISITS_COUNTER'		=> true,
 			));
 		}
 	}
 
 	public function add_page_header_links($event)
 	{
-
 		if (!empty($this->config['allow_visits_counter']))
 		{
 			$this->user->add_lang_ext('dmzx/counter', 'common');
@@ -106,9 +113,8 @@ class listener implements EventSubscriberInterface
 			$visitsok = (int) $this->db->sql_fetchfield('num_del');
 
 			$this->template->assign_vars(array(
-				'UNIQUE_VISITS_COUNTER'			=> sprintf($this->user->lang['UNIQUE_VISITS_COUNTER'], $visitsok),
+				'UNIQUE_VISITS_COUNTER'		=> sprintf($this->user->lang['UNIQUE_VISITS_COUNTER'], $visitsok),
 			));
 		}
-
 	}
 }
