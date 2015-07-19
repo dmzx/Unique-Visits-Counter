@@ -38,6 +38,14 @@ class listener implements EventSubscriberInterface
 	*/
 	protected $visits_counter_table;
 
+	/**
+	* Constructor
+	* @param \phpbb\config\config				$config
+	* @param \phpbb\template\template			$template
+	* @param \phpbb\user						$user
+	* @param \phpbb\db\driver\driver_interface	$db
+	* 
+	*/
 	public function __construct(\phpbb\config\config $config, \phpbb\template\template $template, \phpbb\user $user, \phpbb\db\driver\driver_interface $db, $visits_counter_table)
 	{
 		$this->config = $config;
