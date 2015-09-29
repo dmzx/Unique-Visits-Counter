@@ -21,16 +21,16 @@ class listener implements EventSubscriberInterface
 {
 	/** @var \phpbb\config\config */
 	protected $config;
-	
+
 	/** @var \phpbb\template\template */
 	protected $template;
-	
+
 	/** @var \phpbb\user */
 	protected $user;
-	
+
 	/** @var \phpbb\db\driver\driver_interface */
 	protected $db;
-	
+
 	/**
 	* The database tables
 	*
@@ -44,7 +44,7 @@ class listener implements EventSubscriberInterface
 	* @param \phpbb\template\template			$template
 	* @param \phpbb\user						$user
 	* @param \phpbb\db\driver\driver_interface	$db
-	* 
+	*
 	*/
 	public function __construct(\phpbb\config\config $config, \phpbb\template\template $template, \phpbb\user $user, \phpbb\db\driver\driver_interface $db, $visits_counter_table)
 	{
