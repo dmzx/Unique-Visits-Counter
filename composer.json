@@ -24,9 +24,9 @@
 			"phpbb/phpbb": "3.1.*"
 		},
 		"version-check": {
-			"host": "www.phpbb.com",
-			"directory": "/customise/db/extension/unique_visits_counter",
-			"filename": "version_check"
+			"host": "www.dmzx-web.net",
+			"directory": "/versions",
+			"filename": "counter_version.json"
 		}
 	}
 }
