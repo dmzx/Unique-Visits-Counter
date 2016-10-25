@@ -33,8 +33,8 @@ class prune_counter extends \phpbb\cron\task\base
 	 *
 	 */
 	public function __construct(
-		\phpbb\config\config $config, 
-		\phpbb\db\driver\driver_interface $db, 
+		\phpbb\config\config $config,
+		\phpbb\db\driver\driver_interface $db,
 		$visits_counter_table)
 	{
 		$this->config				= $config;

@@ -48,10 +48,10 @@ class listener implements EventSubscriberInterface
 	*
 	*/
 	public function __construct(
-		\phpbb\config\config $config, 
-		\phpbb\template\template $template, 
-		\phpbb\user $user, 
-		\phpbb\db\driver\driver_interface $db, 
+		\phpbb\config\config $config,
+		\phpbb\template\template $template,
+		\phpbb\user $user,
+		\phpbb\db\driver\driver_interface $db,
 		$visits_counter_table)
 	{
 		$this->config 				= $config;
