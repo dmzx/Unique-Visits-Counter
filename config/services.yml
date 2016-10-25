@@ -1,17 +1,50 @@
 imports:
     - { resource: tables.yml }
+parameters:
+    counter.version_data:
+        author: dmzx
+        title: Unique Visits Counter
+        version: counter_version
+        file:
+            - www.dmzx-web.net
+            - /versions
+            - counter_version.json
 services:
-    dmzx.counter.acplistener:
-        class: dmzx\counter\event\acp_listener
+    dmzx.counter.version.check:
+        class: dmzx\counter\includes\version_check
+        scope: prototype
+        arguments:
+            - '%counter.version_data%'
+            - '@config'
+            - '@version_helper'
+            - '@template'
+            - '@user'
+    dmzx.counter.admin.controller:
+        class: dmzx\counter\controller\admin_controller
+        arguments:
+            - '@config'
+            - '@template'
+            - '@log'
+            - '@user'
+            - '@service_container'
+            - '@request'
+    dmzx.cron.task.core.counter:
+        class: dmzx\counter\cron\prune_counter
+        arguments:
+            - '@config'
+            - '@dbal.conn'
+            - '%dmzx.counter.table.counter%'
+        calls:
+            - [set_name, [cron.task.core.counter]]
         tags:
-            - { name: event.listener }
+            - { name: cron.task }
     dmzx.counter.listener:
         class: dmzx\counter\event\listener
         arguments:
-            - @config
-            - @template
-            - @user
-            - @dbal.conn
-            - %dmzx.counter.table.counter%
+            - '@config'
+            - '@template'
+            - '@user'
+            - '@dbal.conn'
+            - '%dmzx.counter.table.counter%'
         tags:
             - { name: event.listener }

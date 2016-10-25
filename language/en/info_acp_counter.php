@@ -2,7 +2,7 @@
 /**
 *
 * @package phpBB Extension - Unique Visits Counter
-* @copyright (c) 2015 dmzx - http://www.dmzx-web.net
+* @copyright (c) 2016 dmzx - http://www.dmzx-web.net
 * @license http://opensource.org/licenses/gpl-2.0.php GNU General Public License v2
 *
 */
@@ -11,6 +11,7 @@ if (!defined('IN_PHPBB'))
 {
 	exit;
 }
+
 if (empty($lang) || !is_array($lang))
 {
 	$lang = array();
@@ -32,8 +33,7 @@ if (empty($lang) || !is_array($lang))
 // ’ » “ ” …
 
 $lang = array_merge($lang, array(
-
 	// ACP entries
-	'ALLOW_VISITS_COUNTER'			=> 'Enable unique visits counter',
-	'ALLOW_VISITS_COUNTER_EXPLAIN'	=> 'If this option is on No, the unique visits counter is completely disabled.',
+	'ACP_VISITS_COUNTER_TITLE'		=> 'Unique Visits Counter',
+	'ACP_VISITS_COUNTER_SETTINGS'	=> 'Settings',
 ));

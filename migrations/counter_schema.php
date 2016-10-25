@@ -2,7 +2,7 @@
 /**
 *
 * @package phpBB Extension - Unique Visits Counter
-* @copyright (c) 2015 dmzx - http://www.dmzx-web.net
+* @copyright (c) 2016 dmzx - http://www.dmzx-web.net
 * @license http://opensource.org/licenses/gpl-2.0.php GNU General Public License v2
 *
 */
@@ -26,7 +26,7 @@ class counter_schema extends \phpbb\db\migration\migration
 			'add_tables'	=> array(
 				$this->table_prefix . 'visits_counter'	=> array(
 					'COLUMNS'	=> array(
-						'uvc_ip'		=> array('VCHAR:40', ''),
+						'uvc_ip'		=> array('VCHAR:15', ''),
 						'uvc_timestamp'	=> array('INT:30', 0),
 					),
 					'KEYS'			=> array(

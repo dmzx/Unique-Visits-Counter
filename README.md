@@ -1,5 +1,7 @@
 # Unique Visits Counter Extension
 
+[![Build Status](https://travis-ci.org/dmzx/Unique-Visits-Counter.svg?branch=master)](https://travis-ci.org/dmzx/Unique-Visits-Counter)
+
 ## Install
 
 1. Download the latest release.

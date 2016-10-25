@@ -2,7 +2,7 @@
 /**
 *
 * @package phpBB Extension - Unique Visits Counter
-* @copyright (c) 2015 dmzx - http://www.dmzx-web.net
+* @copyright (c) 2016 dmzx - http://www.dmzx-web.net
 * @license http://opensource.org/licenses/gpl-2.0.php GNU General Public License v2
 *
 */
@@ -32,7 +32,7 @@ class listener implements EventSubscriberInterface
 	protected $db;
 
 	/**
-	* The database tables
+	* The database table
 	*
 	* @var string
 	*/
@@ -44,23 +44,40 @@ class listener implements EventSubscriberInterface
 	* @param \phpbb\template\template			$template
 	* @param \phpbb\user						$user
 	* @param \phpbb\db\driver\driver_interface	$db
+	* @param string								$visits_counter_table
 	*
 	*/
-	public function __construct(\phpbb\config\config $config, \phpbb\template\template $template, \phpbb\user $user, \phpbb\db\driver\driver_interface $db, $visits_counter_table)
+	public function __construct(
+		\phpbb\config\config $config, 
+		\phpbb\template\template $template, 
+		\phpbb\user $user, 
+		\phpbb\db\driver\driver_interface $db, 
+		$visits_counter_table)
 	{
-		$this->config = $config;
-		$this->template = $template;
-		$this->user = $user;
-		$this->db = $db;
+		$this->config 				= $config;
+		$this->template				= $template;
+		$this->user 				= $user;
+		$this->db 					= $db;
 		$this->visits_counter_table = $visits_counter_table;
 	}
 
 	static public function getSubscribedEvents()
 	{
 		return array(
-			'core.index_modify_page_title'	=> 'index_modify_page_title',
-			'core.page_header'	=> 'add_page_header_links',
+			'core.user_setup'					=> 'load_language_on_setup',
+			'core.index_modify_page_title'		=> 'index_modify_page_title',
+			'core.page_header'					=> 'add_page_header_links',
 		);
+	}
+
+	public function load_language_on_setup($event)
+	{
+		$lang_set_ext = $event['lang_set_ext'];
+		$lang_set_ext[] = array(
+			'ext_name' => 'dmzx/counter',
+			'lang_set' => 'common',
+		);
+		$event['lang_set_ext'] = $lang_set_ext;
 	}
 
 	public function index_modify_page_title($event)
@@ -77,18 +94,14 @@ class listener implements EventSubscriberInterface
 	{
 		if (!empty($this->config['allow_visits_counter']))
 		{
-			$this->user->add_lang_ext('dmzx/counter', 'common');
-
-			$sql = 'SELECT COUNT(*) AS visits_counter
+			$sql = 'SELECT COUNT(uvc_ip) AS visits_counter
 				FROM ' . $this->visits_counter_table . '
 				WHERE ' . $this->db->sql_in_set('uvc_ip', $this->user->ip);
 			$result = $this->db->sql_query($sql);
 			$visits_counter = (int) $this->db->sql_fetchfield('visits_counter');
 			$this->db->sql_freeresult($result);
 
-			$visits = $this->config['visits_counter'];
-
-			if($visits_counter == 0)
+			if ($visits_counter == 0)
 			{
 				$sql_ary = array(
 					'uvc_ip'		=> $this->user->ip,
@@ -109,19 +122,15 @@ class listener implements EventSubscriberInterface
 				$this->db->sql_query($sql);
 			}
 
-			$timestamp = time() - (3600 * 24);
-			$sql_ary = array($timestamp);
-			$sql = 'DELETE FROM ' . $this->visits_counter_table . '
-				WHERE uvc_timestamp < ' . $timestamp;
-			$this->db->sql_query($sql);
-
-			$sql =	'SELECT COUNT(*) AS num_del
-				FROM ' . $this->visits_counter_table . ' ' ;
-			$result = $this->db->sql_query($sql);
-			$visitsok = (int) $this->db->sql_fetchfield('num_del');
+			$sql = 'SELECT COUNT(uvc_ip) AS counter
+				FROM ' . $this->visits_counter_table;
+			$result = $this->db->sql_query($sql, 60);
+			$counter = (int) $this->db->sql_fetchfield('counter');
+			$this->db->sql_freeresult($result);
 
 			$this->template->assign_vars(array(
-				'UNIQUE_VISITS_COUNTER'		=> sprintf($this->user->lang['UNIQUE_VISITS_COUNTER'], $visitsok),
+				'UNIQUE_VISITS_COUNTER'					=> $this->user->lang('UNIQUE_VISITS_COUNTER', $counter),
+				'UNIQUE_VISITS_COUNTER_HOUR'			=> $this->user->lang('UNIQUE_VISITS_COUNTER_HOUR', $this->config['visits_counter_gc'] / 3600),
 			));
 		}
 	}
