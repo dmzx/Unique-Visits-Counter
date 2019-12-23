@@ -2,7 +2,7 @@
 /**
 *
 * @package phpBB Extension - Unique Visits Counter
-* @copyright (c) 2016 dmzx - http://www.dmzx-web.net
+* @copyright (c) 2016 dmzx - https://www.dmzx-web.net
 * @license http://opensource.org/licenses/gpl-2.0.php GNU General Public License v2
 *
 */
@@ -35,7 +35,8 @@ class prune_counter extends \phpbb\cron\task\base
 	public function __construct(
 		\phpbb\config\config $config,
 		\phpbb\db\driver\driver_interface $db,
-		$visits_counter_table)
+		$visits_counter_table
+	)
 	{
 		$this->config				= $config;
 		$this->db 					= $db;

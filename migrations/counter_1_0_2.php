@@ -2,7 +2,7 @@
 /**
 *
 * @package phpBB Extension - Unique Visits Counter
-* @copyright (c) 2016 dmzx - http://www.dmzx-web.net
+* @copyright (c) 2016 dmzx - https://www.dmzx-web.net
 * @license http://opensource.org/licenses/gpl-2.0.php GNU General Public License v2
 *
 */
@@ -32,13 +32,15 @@ class counter_1_0_2 extends migration
 			array('module.add', array(
 				'acp',
 				'ACP_CAT_DOT_MODS',
-				'ACP_VISITS_COUNTER_TITLE'
+				'ACP_VISITS_COUNTER_TITLE',
 			)),
 			array('module.add', array(
 				'acp',
 				'ACP_VISITS_COUNTER_TITLE',
 				array(
 					'module_basename'	=> '\dmzx\counter\acp\acp_counter_module',
+					'modes'				=> array('settings'),
+					'module_auth'		=> 'acl_a_',
 				),
 			)),
 		);

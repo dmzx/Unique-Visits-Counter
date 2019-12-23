@@ -2,7 +2,7 @@
 /**
 *
 * @package phpBB Extension - Unique Visits Counter
-* @copyright (c) 2016 dmzx - http://www.dmzx-web.net
+* @copyright (c) 2016 dmzx - https://www.dmzx-web.net
 * @license http://opensource.org/licenses/gpl-2.0.php GNU General Public License v2
 *
 */
@@ -34,6 +34,8 @@ if (empty($lang) || !is_array($lang))
 
 $lang = array_merge($lang, array(
 	// ACP entries
-	'ACP_VISITS_COUNTER_TITLE'		=> 'Unique Visits Counter',
-	'ACP_VISITS_COUNTER_SETTINGS'	=> 'Settings',
+	'ACP_VISITS_COUNTER_TITLE'			=> 'Unique Visits Counter',
+	'ACP_VISITS_COUNTER_SETTINGS'		=> 'Settings',
+	// Log
+	'LOG_UNIQUE_VISITS_COUNTER_SAVED'	=> '<strong>Unique Visits Counter settings saved</strong>',
 ));

@@ -2,7 +2,7 @@
 /**
 *
 * @package phpBB Extension - Unique Visits Counter
-* @copyright (c) 2016 dmzx - http://www.dmzx-web.net
+* @copyright (c) 2016 dmzx - https://www.dmzx-web.net
 * @license http://opensource.org/licenses/gpl-2.0.php GNU General Public License v2
 *
 */
@@ -49,7 +49,8 @@ class admin_controller
 		\phpbb\log\log_interface $log,
 		\phpbb\user $user,
 		$phpbb_container,
-		\phpbb\request\request $request)
+		\phpbb\request\request $request
+	)
 	{
 		$this->config 			= $config;
 		$this->template 		= $template;
@@ -69,8 +70,6 @@ class admin_controller
 	{
 		add_form_key('acp_counter');
 
-		$this->version_check = $this->phpbb_container->get('dmzx.counter.version.check');
-
 		// Is the form being submitted to us?
 		if ($this->request->is_set_post('submit'))
 		{
@@ -83,7 +82,7 @@ class admin_controller
 			$this->set_options();
 
 			// Add option settings change action to the admin log
-			$this->log->add('admin', $this->user->data['user_id'], $this->user->ip, 'UNIQUE_VISITS_COUNTER_SAVED');
+			$this->log->add('admin', $this->user->data['user_id'], $this->user->ip, 'LOG_UNIQUE_VISITS_COUNTER_SAVED');
 
 			trigger_error($this->user->lang('UNIQUE_VISITS_COUNTER_SAVED') . adm_back_link($this->u_action));
 		}
@@ -93,9 +92,8 @@ class admin_controller
 			'ALLOW_VISITS_COUNTER'					=> $this->config['allow_visits_counter'],
 			'VISITS_COUNTER_GC'			 			=> $this->config['visits_counter_gc'] / 3600,
 			'UNIQUE_VISITS_COUNTER_HOURS'			=> $this->user->lang('UNIQUE_VISITS_COUNTER_HOURS', $this->config['visits_counter_gc'] / 3600),
-
+			'UNIQUE_VISITS_COUNTER_VERSION'			=> $this->config['counter_version'],
 		));
-		$this->version_check->check();
 	}
 
 	/**

@@ -2,14 +2,11 @@
 /**
 *
 * @package phpBB Extension - Unique Visits Counter
-* @copyright (c) 2016 dmzx - https://www.dmzx-web.net
+* @copyright (c) 2019 dmzx - https://www.dmzx-web.net
 * @license http://opensource.org/licenses/gpl-2.0.php GNU General Public License v2
 *
 */
 
-/**
-* DO NOT CHANGE
-*/
 if (!defined('IN_PHPBB'))
 {
 	exit;
@@ -17,7 +14,7 @@ if (!defined('IN_PHPBB'))
 
 if (empty($lang) || !is_array($lang))
 {
-	$lang = array();
+	$lang = [];
 }
 
 // DEVELOPERS PLEASE NOTE
@@ -32,17 +29,17 @@ if (empty($lang) || !is_array($lang))
 // equally where a string contains only two placeholders which are used to wrap text
 // in a url you again do not need to specify an order e.g., 'Click %sHERE%s' is fine
 //
-// Some characters you may want to copy&paste:
+// Some characters for use
 // ’ » “ ” …
-//
 
-$lang = array_merge($lang, array(
-	'UNIQUE_VISITS_COUNTER'			=> array(
-		1 => '<strong>%d</strong> visit',
-		2 => '<strong>%d</strong> visits',
-	),
-	'UNIQUE_VISITS_COUNTER_HOUR'	=> array(
-		1 => 'last hour',
-		2 => 'last <strong>%d</strong> hours',
-	),
-));
+$lang = array_merge($lang, [
+	'UNIQUE_VISITS_COUNTER_SAVED'						=> 'Unique Visits Counter settings saved.',
+	'UNIQUE_VISITS_COUNTER_ALLOW'						=> 'Enable unique visits counter',
+	'UNIQUE_VISITS_COUNTER_ALLOW_EXPLAIN'				=> 'If this option is on No, the unique visits counter is completely disabled.',
+	'UNIQUE_VISITS_COUNTER_TIME_VALUE'					=> 'Set time period',
+	'UNIQUE_VISITS_COUNTER_TIME_VALUE_EXPLAIN'			=> 'Set time period for show visits.<br />Same time will be used for prune visits.<br />Default is 24 hours.',
+	'UNIQUE_VISITS_COUNTER_HOURS'	=> [
+		1 => 'Hour',
+		2 => 'Hours',
+	],
+]);

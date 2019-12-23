@@ -2,7 +2,7 @@
 /**
 *
 * @package phpBB Extension - Unique Visits Counter
-* @copyright (c) 2016 dmzx - http://www.dmzx-web.net
+* @copyright (c) 2016 dmzx - https://www.dmzx-web.net
 * @license http://opensource.org/licenses/gpl-2.0.php GNU General Public License v2
 *
 */
@@ -30,10 +30,11 @@ class counter_schema extends \phpbb\db\migration\migration
 						'uvc_timestamp'	=> array('INT:30', 0),
 					),
 					'KEYS'			=> array(
-					'uvc_ip'	=> array('INDEX', 'uvc_ip'),
+						'uvc_ip'	=> array('INDEX', 'uvc_ip'),
+					),
 				),
 			),
-		));
+		);
 	}
 
 	public function revert_schema()
