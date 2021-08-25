@@ -57,7 +57,7 @@ class prune_counter extends base
 		$timestamp = time() - $this->config['visits_counter_gc'];
 		$sql_ary = [$timestamp];
 		$sql = 'DELETE FROM ' . $this->visits_counter_table . '
-			WHERE uvc_timestamp < ' . $timestamp;
+			WHERE uvc_timestamp < ' . (int) $timestamp;
 		$this->db->sql_query($sql);
 
 		$this->config->set('visits_counter_last_gc', time());
