@@ -3,8 +3,8 @@
 	"type": "phpbb-extension",
 	"description": "This extension is based on the visitor’s IP address. The IP address of the new visitor is checked to see if it does not already exist in the table of the extension. If the IP address does not exist, it is registered in the table of the extension and is counted as a new visit.",
 	"homepage": "https://www.dmzx-web.net",
-	"version": "1.0.5",
-	"time": "2019-12-23",
+	"version": "1.0.6",
+	"time": "2021-08-25",
 	"keywords": [
 		"phpbb",
 		"extension",

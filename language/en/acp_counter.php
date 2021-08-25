@@ -42,5 +42,5 @@ $lang = array_merge($lang, [
 		1 => 'Hour',
 		2 => 'Hours',
 	],
-	'UNIQUE_VISITS_COUNTER_VERSION'					    => 'Version',
+	'UNIQUE_VISITS_COUNTER_VERSION'						=> 'Version',
 ]);
