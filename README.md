@@ -1,6 +1,6 @@
 # Unique Visits Counter Extension
 
-[![Build Status](https://travis-ci.org/dmzx/Unique-Visits-Counter.svg?branch=master)](https://travis-ci.org/dmzx/Unique-Visits-Counter)
+[![Build Status](https://github.com/dmzx/Unique-Visits-Counter/workflows/Tests/badge.svg)](https://github.com/phpbb-extensions/dmzx/Unique-Visits-Counter)
 
 ## Install
 
