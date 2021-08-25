@@ -15,26 +15,26 @@ class counter_1_0_4 extends migration
 {
 	static public function depends_on()
 	{
-		return array(
+		return [
 			'\dmzx\counter\migrations\counter_1_0_3',
-		);
+		];
 	}
 
 	public function update_data()
 	{
-		return array(
-			array('config.update', array('counter_version', '1.0.4')),
-		);
+		return [
+			['config.update', ['counter_version', '1.0.4']],
+		];
 	}
 
 	public function update_schema()
 	{
-		return array(
-			'change_columns'	=> array(
-				$this->table_prefix . 'visits_counter'	=> array(
-					'uvc_ip'		=> array('VCHAR:40', ''),
-				),
-			),
-		);
+		return [
+			'change_columns'	=> [
+				$this->table_prefix . 'visits_counter'	=> [
+					'uvc_ip'		=> ['VCHAR:40', ''],
+				],
+			],
+		];
 	}
 }

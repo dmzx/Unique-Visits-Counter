@@ -15,34 +15,34 @@ class counter_1_0_2 extends migration
 {
 	static public function depends_on()
 	{
-		return array(
+		return [
 			'\dmzx\counter\migrations\counter_schema',
-		);
+		];
 	}
 
 	public function update_data()
 	{
-		return array(
+		return [
 			// Add config
-			array('config.add', array('counter_version', '1.0.2')),
-			array('config.add',	array('visits_counter_gc', 86400)),
-			array('config.add',	array('visits_counter_last_gc', 0, 1)),
+			['config.add', ['counter_version', '1.0.2']],
+			['config.add',	['visits_counter_gc', 86400]],
+			['config.add',	['visits_counter_last_gc', 0, 1]],
 
 			// ACP module
-			array('module.add', array(
+			['module.add', [
 				'acp',
 				'ACP_CAT_DOT_MODS',
 				'ACP_VISITS_COUNTER_TITLE',
-			)),
-			array('module.add', array(
+			]],
+			['module.add', [
 				'acp',
 				'ACP_VISITS_COUNTER_TITLE',
-				array(
+				[
 					'module_basename'	=> '\dmzx\counter\acp\acp_counter_module',
-					'modes'				=> array('settings'),
+					'modes'				=> ['settings'],
 					'module_auth'		=> 'acl_a_',
-				),
-			)),
-		);
+				],
+			]],
+		];
 	}
 }

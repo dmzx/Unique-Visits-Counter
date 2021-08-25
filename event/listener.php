@@ -62,19 +62,19 @@ class listener implements EventSubscriberInterface
 
 	static public function getSubscribedEvents()
 	{
-		return array(
+		return [
 			'core.index_modify_page_title'		=> 'index_modify_page_title',
 			'core.page_header'					=> 'add_page_header_links',
-		);
+		];
 	}
 
 	public function index_modify_page_title($event)
 	{
 		if (!empty($this->config['allow_visits_counter']))
 		{
-			$this->template->assign_vars(array(
+			$this->template->assign_vars([
 				'S_VISITS_COUNTER'		=> true,
-			));
+			]);
 		}
 	}
 
@@ -93,10 +93,10 @@ class listener implements EventSubscriberInterface
 
 			if ($visits_counter == 0)
 			{
-				$sql_ary = array(
+				$sql_ary = [
 					'uvc_ip'		=> $this->user->ip,
 					'uvc_timestamp'	=> time()
-				);
+				];
 				$sql = 'INSERT INTO ' . $this->visits_counter_table . ' ' . $this->db->sql_build_array('INSERT', $sql_ary);
 				$this->db->sql_query($sql);
 
@@ -104,9 +104,9 @@ class listener implements EventSubscriberInterface
 			}
 			else
 			{
-				$sql_ary = array(
+				$sql_ary = [
 					'uvc_timestamp'	=> time()
-				);
+				];
 				$sql = 'UPDATE ' . $this->visits_counter_table . ' SET ' . $this->db->sql_build_array('UPDATE', $sql_ary) . '
 					WHERE ' . $this->db->sql_in_set('uvc_ip', $this->user->ip);
 				$this->db->sql_query($sql);
@@ -118,10 +118,10 @@ class listener implements EventSubscriberInterface
 			$counter = (int) $this->db->sql_fetchfield('counter');
 			$this->db->sql_freeresult($result);
 
-			$this->template->assign_vars(array(
+			$this->template->assign_vars([
 				'UNIQUE_VISITS_COUNTER'					=> $this->user->lang('UNIQUE_VISITS_COUNTER', $counter),
 				'UNIQUE_VISITS_COUNTER_HOUR'			=> $this->user->lang('UNIQUE_VISITS_COUNTER_HOUR', $this->config['visits_counter_gc'] / 3600),
-			));
+			]);
 		}
 	}
 }

@@ -14,7 +14,7 @@ if (!defined('IN_PHPBB'))
 
 if (empty($lang) || !is_array($lang))
 {
-	$lang = array();
+	$lang = [];
 }
 
 // DEVELOPERS PLEASE NOTE
@@ -32,10 +32,10 @@ if (empty($lang) || !is_array($lang))
 // Some characters for use
 // ’ » “ ” …
 
-$lang = array_merge($lang, array(
+$lang = array_merge($lang, [
 	// ACP entries
 	'ACP_VISITS_COUNTER_TITLE'			=> 'Unique Visits Counter',
 	'ACP_VISITS_COUNTER_SETTINGS'		=> 'Settings',
 	// Log
 	'LOG_UNIQUE_VISITS_COUNTER_SAVED'	=> '<strong>Unique Visits Counter settings saved</strong>',
-));
+]);

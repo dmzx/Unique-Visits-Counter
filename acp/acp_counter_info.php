@@ -13,12 +13,12 @@ class acp_counter_info
 {
 	function module()
 	{
-		return array(
+		return [
 			'filename'	=> '\dmzx\counter\acp\acp_counter_module',
 			'title'		=> 'ACP_VISITS_COUNTER_TITLE',
-			'modes'		=> array(
-				'settings'	=> array('title' => 'ACP_VISITS_COUNTER_SETTINGS', 'auth' => 'ext_dmzx/counter && acl_a_board', 'cat' => array('ACP_VISITS_COUNTER_TITLE')),
-			),
-		);
+			'modes'		=> [
+				'settings'	=> ['title' => 'ACP_VISITS_COUNTER_SETTINGS', 'auth' => 'ext_dmzx/counter && acl_a_board', 'cat' => ['ACP_VISITS_COUNTER_TITLE']],
+			],
+		];
 	}
 }

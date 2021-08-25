@@ -55,7 +55,7 @@ class prune_counter extends base
 	public function run()
 	{
 		$timestamp = time() - $this->config['visits_counter_gc'];
-		$sql_ary = array($timestamp);
+		$sql_ary = [$timestamp];
 		$sql = 'DELETE FROM ' . $this->visits_counter_table . '
 			WHERE uvc_timestamp < ' . $timestamp;
 		$this->db->sql_query($sql);

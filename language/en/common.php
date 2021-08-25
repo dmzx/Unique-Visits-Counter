@@ -17,7 +17,7 @@ if (!defined('IN_PHPBB'))
 
 if (empty($lang) || !is_array($lang))
 {
-	$lang = array();
+	$lang = [];
 }
 
 // DEVELOPERS PLEASE NOTE
@@ -36,13 +36,13 @@ if (empty($lang) || !is_array($lang))
 // ’ » “ ” …
 //
 
-$lang = array_merge($lang, array(
-	'UNIQUE_VISITS_COUNTER'			=> array(
+$lang = array_merge($lang, [
+	'UNIQUE_VISITS_COUNTER'			=> [
 		1 => '<strong>%d</strong> visit',
 		2 => '<strong>%d</strong> visits',
-	),
-	'UNIQUE_VISITS_COUNTER_HOUR'	=> array(
+	],
+	'UNIQUE_VISITS_COUNTER_HOUR'	=> [
 		1 => 'last hour',
 		2 => 'last <strong>%d</strong> hours',
-	),
-));
+	],
+]);

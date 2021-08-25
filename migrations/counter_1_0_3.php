@@ -15,15 +15,15 @@ class counter_1_0_3 extends migration
 {
 	static public function depends_on()
 	{
-		return array(
+		return [
 			'\dmzx\counter\migrations\counter_1_0_2',
-		);
+		];
 	}
 
 	public function update_data()
 	{
-		return array(
-			array('config.update', array('counter_version', '1.0.3')),
-		);
+		return [
+			['config.update', ['counter_version', '1.0.3']],
+		];
 	}
 }

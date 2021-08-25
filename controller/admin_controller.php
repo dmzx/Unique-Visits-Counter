@@ -87,13 +87,13 @@ class admin_controller
 			trigger_error($this->user->lang('UNIQUE_VISITS_COUNTER_SAVED') . adm_back_link($this->u_action));
 		}
 
-		$this->template->assign_vars(array(
+		$this->template->assign_vars([
 			'U_ACTION'								=> $this->u_action,
 			'ALLOW_VISITS_COUNTER'					=> $this->config['allow_visits_counter'],
 			'VISITS_COUNTER_GC'			 			=> $this->config['visits_counter_gc'] / 3600,
 			'UNIQUE_VISITS_COUNTER_HOURS'			=> $this->user->lang('UNIQUE_VISITS_COUNTER_HOURS', $this->config['visits_counter_gc'] / 3600),
 			'UNIQUE_VISITS_COUNTER_VERSION'			=> $this->config['counter_version'],
-		));
+		]);
 	}
 
 	/**
