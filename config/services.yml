@@ -1,9 +1,9 @@
 imports:
-    - { resource: tables.yml }
+    - { resource: 'tables.yml' }
 
 services:
     dmzx.counter.admin.controller:
-        class: dmzx\counter\controller\admin_controller
+        class: 'dmzx\counter\controller\admin_controller'
         arguments:
             - '@config'
             - '@template'
@@ -12,17 +12,17 @@ services:
             - '@service_container'
             - '@request'
     dmzx.cron.task.core.counter:
-        class: dmzx\counter\cron\prune_counter
+        class: 'dmzx\counter\cron\prune_counter'
         arguments:
             - '@config'
             - '@dbal.conn'
             - '%dmzx.counter.table.counter%'
         calls:
-            - [set_name, [cron.task.core.counter]]
+            - ['set_name', ['cron.task.core.counter']]
         tags:
-            - { name: cron.task }
+            - { name: 'cron.task' }
     dmzx.counter.listener:
-        class: dmzx\counter\event\listener
+        class: 'dmzx\counter\event\listener'
         arguments:
             - '@config'
             - '@template'
@@ -30,4 +30,4 @@ services:
             - '@dbal.conn'
             - '%dmzx.counter.table.counter%'
         tags:
-            - { name: event.listener }
+            - { name: 'event.listener' }
