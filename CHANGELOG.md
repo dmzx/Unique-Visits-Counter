@@ -1,5 +1,10 @@
 ## Unique Visits Counter Changelog
 
+### 1.0.6 - 2021-08-25
+
+- Code update.
+- Code cleanup.
+
 ### 1.0.5 - 2019-12-23
 
 - Updated code.
