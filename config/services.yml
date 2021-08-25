@@ -10,7 +10,7 @@ services:
             - '@log'
             - '@user'
             - '@request'
-    dmzx.cron.task.core.counter:
+    dmzx.counter.cron.task.core.counter:
         class: 'dmzx\counter\cron\prune_counter'
         arguments:
             - '@config'
