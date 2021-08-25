@@ -37,9 +37,10 @@ $lang = array_merge($lang, [
 	'UNIQUE_VISITS_COUNTER_ALLOW'						=> 'Enable unique visits counter',
 	'UNIQUE_VISITS_COUNTER_ALLOW_EXPLAIN'				=> 'If this option is on No, the unique visits counter is completely disabled.',
 	'UNIQUE_VISITS_COUNTER_TIME_VALUE'					=> 'Set time period',
-	'UNIQUE_VISITS_COUNTER_TIME_VALUE_EXPLAIN'			=> 'Set time period for show visits.<br />Same time will be used for prune visits.<br />Default is 24 hours.',
+	'UNIQUE_VISITS_COUNTER_TIME_VALUE_EXPLAIN'			=> 'Set time period for show visits.<br>Same time will be used for prune visits.<br>Default is 24 hours.',
 	'UNIQUE_VISITS_COUNTER_HOURS'	=> [
 		1 => 'Hour',
 		2 => 'Hours',
 	],
+	'UNIQUE_VISITS_COUNTER_VERSION'					    => 'Version',
 ]);
