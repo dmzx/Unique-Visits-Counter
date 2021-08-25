@@ -9,7 +9,9 @@
 
 namespace dmzx\counter\migrations;
 
-class counter_schema extends \phpbb\db\migration\migration
+use phpbb\db\migration\migration;
+
+class counter_schema extends migration
 {
 	public function update_data()
 	{

@@ -9,7 +9,6 @@ services:
             - '@template'
             - '@log'
             - '@user'
-            - '@service_container'
             - '@request'
     dmzx.cron.task.core.counter:
         class: 'dmzx\counter\cron\prune_counter'

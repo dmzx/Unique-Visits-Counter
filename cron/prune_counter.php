@@ -9,12 +9,16 @@
 
 namespace dmzx\counter\cron;
 
-class prune_counter extends \phpbb\cron\task\base
+use phpbb\config\config;
+use phpbb\cron\task\base;
+use phpbb\db\driver\driver_interface;
+
+class prune_counter extends base
 {
-	/** @var \phpbb\config\config */
+	/** @var config */
 	protected $config;
 
-	/** @var \phpbb\db\driver\driver_interface */
+	/** @var driver_interface */
 	protected $db;
 
 	/**
@@ -27,14 +31,14 @@ class prune_counter extends \phpbb\cron\task\base
 	/**
 	 * Constructor
 	 *
-	 * @param \phpbb\config\config				 			$config
-	 * @param \phpbb\db\driver\driver_interface				$db
+	 * @param config				 			$config
+	 * @param driver_interface				$db
 	 * @param string										$visits_counter_table
 	 *
 	 */
 	public function __construct(
-		\phpbb\config\config $config,
-		\phpbb\db\driver\driver_interface $db,
+		config $config,
+		driver_interface $db,
 		$visits_counter_table
 	)
 	{

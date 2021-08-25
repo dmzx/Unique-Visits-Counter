@@ -9,24 +9,27 @@
 
 namespace dmzx\counter\controller;
 
+use phpbb\config\config;
+use phpbb\log\log_interface;
+use phpbb\request\request;
+use phpbb\template\template;
+use phpbb\user;
+
 class admin_controller
 {
-	/** @var \phpbb\config\config */
+	/** @var config */
 	protected $config;
 
-	/** @var \phpbb\template\template */
+	/** @var template */
 	protected $template;
 
-	/** @var \phpbb\log\log_interface */
+	/** @var log_interface */
 	protected $log;
 
-	/** @var \phpbb\user */
+	/** @var user */
 	protected $user;
 
-	/** @var ContainerBuilder */
-	protected $phpbb_container;
-
-	/** @var \phpbb\request\request */
+	/** @var request */
 	protected $request;
 
 	/** @var string Custom form action */
@@ -35,28 +38,25 @@ class admin_controller
 	/**
 	 * Constructor
 	 *
-	 * @param \phpbb\config\config											$config
-	 * @param \phpbb\template\template										$template
-	 * @param \\phpbb\log\log_interface										$log
-	 * @param \phpbb\user													$user
-	 * @param \Symfony\Component\DependencyInjection\ContainerInterface 	$phpbb_container
-	 * @param \phpbb\request\request										$request
+	 * @param config				$config
+	 * @param template				$template
+	 * @param log_interface			$log
+	 * @param user					$user
+	 * @param request				$request
 	 *
 	 */
 	public function __construct(
-		\phpbb\config\config $config,
-		\phpbb\template\template $template,
-		\phpbb\log\log_interface $log,
-		\phpbb\user $user,
-		$phpbb_container,
-		\phpbb\request\request $request
+		config $config,
+		template $template,
+		log_interface $log,
+		user $user,
+		request $request
 	)
 	{
 		$this->config 			= $config;
 		$this->template 		= $template;
 		$this->log 				= $log;
 		$this->user 			= $user;
-		$this->phpbb_container 	= $phpbb_container;
 		$this->request 			= $request;
 	}
 

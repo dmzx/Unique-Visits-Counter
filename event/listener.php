@@ -9,20 +9,24 @@
 
 namespace dmzx\counter\event;
 
+use phpbb\config\config;
+use phpbb\db\driver\driver_interface;
+use phpbb\template\template;
+use phpbb\user;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 class listener implements EventSubscriberInterface
 {
-	/** @var \phpbb\config\config */
+	/** @var config */
 	protected $config;
 
-	/** @var \phpbb\template\template */
+	/** @var template */
 	protected $template;
 
-	/** @var \phpbb\user */
+	/** @var user */
 	protected $user;
 
-	/** @var \phpbb\db\driver\driver_interface */
+	/** @var driver_interface */
 	protected $db;
 
 	/**
@@ -34,18 +38,18 @@ class listener implements EventSubscriberInterface
 
 	/**
 	* Constructor
-	* @param \phpbb\config\config				$config
-	* @param \phpbb\template\template			$template
-	* @param \phpbb\user						$user
-	* @param \phpbb\db\driver\driver_interface	$db
+	* @param config				$config
+	* @param template			$template
+	* @param user						$user
+	* @param driver_interface	$db
 	* @param string								$visits_counter_table
 	*
 	*/
 	public function __construct(
-		\phpbb\config\config $config,
-		\phpbb\template\template $template,
-		\phpbb\user $user,
-		\phpbb\db\driver\driver_interface $db,
+		config $config,
+		template $template,
+		user $user,
+		driver_interface $db,
 		$visits_counter_table
 	)
 	{
