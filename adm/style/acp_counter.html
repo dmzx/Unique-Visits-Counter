@@ -9,7 +9,7 @@
 		<legend>{{ lang('ACP_VISITS_COUNTER_SETTINGS') }}</legend>
 		<dl>
 			<dt>
-				<label for="allow_visits_counter">{{ lang('UNIQUE_VISITS_COUNTER_ALLOW') }}{{ lang('COLON') }}</label><br />
+				<label for="allow_visits_counter">{{ lang('UNIQUE_VISITS_COUNTER_ALLOW') ~ lang('COLON') }}</label><br />
 				<span>{{ lang('UNIQUE_VISITS_COUNTER_ALLOW_EXPLAIN') }}</span>
 			</dt>
 			<dd>
@@ -19,7 +19,7 @@
 		</dl>
 		<dl>
 			<dt>
-				<label>{{ lang('UNIQUE_VISITS_COUNTER_TIME_VALUE') }}{{ lang('COLON') }}</label><br />
+				<label>{{ lang('UNIQUE_VISITS_COUNTER_TIME_VALUE') ~ lang('COLON') }}</label><br />
 				<span>{{ lang('UNIQUE_VISITS_COUNTER_TIME_VALUE_EXPLAIN') }}</span>
 			</dt>
 			<dd>{{ UNIQUE_VISITS_COUNTER_HOURS }}</dd>
