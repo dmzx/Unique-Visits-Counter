@@ -31,9 +31,9 @@ class prune_counter extends base
 	/**
 	 * Constructor
 	 *
-	 * @param config				 			$config
+	 * @param config				 		$config
 	 * @param driver_interface				$db
-	 * @param string										$visits_counter_table
+	 * @param string						$visits_counter_table
 	 *
 	 */
 	public function __construct(

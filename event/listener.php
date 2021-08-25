@@ -40,9 +40,9 @@ class listener implements EventSubscriberInterface
 	* Constructor
 	* @param config				$config
 	* @param template			$template
-	* @param user						$user
+	* @param user				$user
 	* @param driver_interface	$db
-	* @param string								$visits_counter_table
+	* @param string				$visits_counter_table
 	*
 	*/
 	public function __construct(
